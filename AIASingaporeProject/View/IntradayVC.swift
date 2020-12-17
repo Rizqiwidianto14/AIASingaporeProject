@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class IntradayVC: UIViewController {
     let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo")!
 
     override func viewDidLoad() {

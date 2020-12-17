@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nXD-tx-29I">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
@@ -8,23 +8,130 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Daily-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AIASingaporeProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DailyVC" id="BYZ-38-t0r" customClass="DailyVC" customModule="AIASingaporeProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Daily" image="calendar.badge.clock" catalog="system" id="aEi-ij-ZSo">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-87" y="93"/>
+            <point key="canvasLocation" x="571" y="824"/>
+        </scene>
+        <!--Intraday-->
+        <scene sceneID="LjS-HG-lbc">
+            <objects>
+                <viewController storyboardIdentifier="IntradayVC" id="dFD-Iw-Dh4" customClass="IntradayVC" customModule="AIASingaporeProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dd5-w5-1KF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gRf-9i-DXU">
+                                <rect key="frame" x="0.0" y="124" width="414" height="689"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="95" id="WAb-rp-k3e">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="95"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WAb-rp-k3e" id="PyC-R7-tts">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="RBw-qy-Yc1">
+                                <rect key="frame" x="10" y="64" width="394" height="30"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8xB-WP-fOz">
+                                        <rect key="frame" x="0.0" y="0.0" width="326" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAv-oD-Axd">
+                                        <rect key="frame" x="348" y="0.0" width="46" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="46" id="oIj-uD-a6v"/>
+                                            <constraint firstAttribute="height" constant="30" id="ugu-nD-GAX"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="8xB-WP-fOz" secondAttribute="bottom" id="6uo-Kh-aMY"/>
+                                    <constraint firstItem="8xB-WP-fOz" firstAttribute="top" secondItem="RBw-qy-Yc1" secondAttribute="top" id="EQN-xW-Ftl"/>
+                                    <constraint firstAttribute="height" constant="30" id="I4D-Cg-lU8"/>
+                                    <constraint firstItem="rAv-oD-Axd" firstAttribute="leading" secondItem="8xB-WP-fOz" secondAttribute="trailing" constant="22" id="h6X-II-6mc"/>
+                                    <constraint firstItem="8xB-WP-fOz" firstAttribute="leading" secondItem="RBw-qy-Yc1" secondAttribute="leading" id="tzQ-zo-lOO"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cBZ-0v-87b"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gRf-9i-DXU" firstAttribute="top" secondItem="RBw-qy-Yc1" secondAttribute="bottom" constant="30" id="1d8-hn-z8E"/>
+                            <constraint firstItem="RBw-qy-Yc1" firstAttribute="top" secondItem="cBZ-0v-87b" secondAttribute="top" constant="20" id="1x0-Nc-dwT"/>
+                            <constraint firstItem="cBZ-0v-87b" firstAttribute="trailing" secondItem="RBw-qy-Yc1" secondAttribute="trailing" constant="10" id="LGo-gA-fv2"/>
+                            <constraint firstItem="gRf-9i-DXU" firstAttribute="leading" secondItem="cBZ-0v-87b" secondAttribute="leading" id="PdZ-LM-ve2"/>
+                            <constraint firstItem="gRf-9i-DXU" firstAttribute="trailing" secondItem="cBZ-0v-87b" secondAttribute="trailing" id="XcX-Y0-qrb"/>
+                            <constraint firstItem="RBw-qy-Yc1" firstAttribute="leading" secondItem="cBZ-0v-87b" secondAttribute="leading" constant="10" id="ohq-gC-pRz"/>
+                            <constraint firstItem="cBZ-0v-87b" firstAttribute="bottom" secondItem="gRf-9i-DXU" secondAttribute="bottom" id="ybz-gY-uWO"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Intraday" image="clock" catalog="system" id="Eyh-Bl-l9P"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6ew-Uv-V1f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-342.02898550724638" y="805.58035714285711"/>
+        </scene>
+        <!--Preferences-->
+        <scene sceneID="CNh-Jd-o5E">
+            <objects>
+                <viewController storyboardIdentifier="SettingsVC" id="isE-wI-NoF" customClass="SettingsVC" customModule="AIASingaporeProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rKQ-9H-ODs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ueK-VG-AD4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Preferences" image="gearshape" catalog="system" id="ZLK-hF-uXP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QH0-ok-yhM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1587" y="806"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="9rK-WC-JSO">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="nXD-tx-29I" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="00f-T0-1G8">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="dFD-Iw-Dh4" kind="relationship" relationship="viewControllers" id="rAu-4z-2AE"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Zae-yF-U92"/>
+                        <segue destination="isE-wI-NoF" kind="relationship" relationship="viewControllers" id="RGM-9h-8Uh"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ry-sC-0rE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="342.02898550724638" y="68.303571428571431"/>
         </scene>
     </scenes>
     <resources>
+        <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>
+        <image name="clock" catalog="system" width="128" height="121"/>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
