@@ -43,17 +43,18 @@ class IntradayServices{
                     completion(stockList.timeSeriesIntraday)
                 }
                 
-//                Narik Tanggal
-                let myDictionary = stockList!.timeSeriesIntraday
-                let arrayOfKeys: [String] = myDictionary.map{String($0.key)}
-                // Narik Specific Value
-
-                
-                for element in arrayOfKeys{
-                    self.open.append(stockList?.timeSeriesIntraday[element]?.the1Open ?? "nil")
-                    self.high.append(stockList?.timeSeriesIntraday[element]?.the2High ?? "nil")
-                    self.low.append(stockList?.timeSeriesIntraday[element]?.the3Low ?? "nil")
-                }
+////                Narik Tanggal
+//                let myDictionary = stockList!.timeSeriesIntraday
+//
+//                let arrayOfKeys: [String] = myDictionary.map{String($0.key)}
+//                // Narik Specific Value
+//
+//
+//                for element in arrayOfKeys{
+//                    self.open.append(stockList?.timeSeriesIntraday[element]?.the1Open ?? "nil")
+//                    self.high.append(stockList?.timeSeriesIntraday[element]?.the2High ?? "nil")
+//                    self.low.append(stockList?.timeSeriesIntraday[element]?.the3Low ?? "nil")
+//                }
                 
 
             }
