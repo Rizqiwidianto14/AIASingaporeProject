@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 class DailyServices{
     
     func getStockData(url: URL, completion: @escaping ([String: TimeSeriesDaily]?) -> ()){
@@ -27,8 +28,12 @@ class DailyServices{
 }
 
 class IntradayServices{
+    var open = [String]()
+    var high = [String]()
+    var low = [String]()
+
     func getStockData(url: URL, completion: @escaping ([String: TimeSeriesIntraday]?) -> ()){
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        URLSession.shared.dataTask(with: url) { [self] (data, response, error) in
             if let error = error {
                 print(error.localizedDescription)
                 completion(nil)
@@ -38,15 +43,19 @@ class IntradayServices{
                     completion(stockList.timeSeriesIntraday)
                 }
                 
-                //Narik Tanggal
-                var myDictionary = stockList!.timeSeriesIntraday
+//                Narik Tanggal
+                let myDictionary = stockList!.timeSeriesIntraday
                 let arrayOfKeys: [String] = myDictionary.map{String($0.key)}
                 // Narik Specific Value
-                for element in arrayOfKeys{
-                    print((stockList!.timeSeriesIntraday[element]!.the3Low))
-                }
 
                 
+                for element in arrayOfKeys{
+                    self.open.append(stockList?.timeSeriesIntraday[element]?.the1Open ?? "nil")
+                    self.high.append(stockList?.timeSeriesIntraday[element]?.the2High ?? "nil")
+                    self.low.append(stockList?.timeSeriesIntraday[element]?.the3Low ?? "nil")
+                }
+                
+
             }
         }.resume()
     }
