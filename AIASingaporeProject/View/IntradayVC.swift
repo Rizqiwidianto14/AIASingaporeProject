@@ -8,13 +8,13 @@
 import UIKit
 
 class IntradayVC: UIViewController {
-    let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo")!
+    let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BBCA&interval=5min&apikey=JD109RV7JNDNU0Z0")!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //
-        WebServices().getStockData(url: url) { interval in
+        IntradayServices().getStockData(url: url) { interval in
 
         }
     }

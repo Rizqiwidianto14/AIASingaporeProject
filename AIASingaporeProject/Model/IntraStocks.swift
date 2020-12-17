@@ -1,37 +1,37 @@
 //
-//  Model.swift
+//  IntraStocks.swift
 //  AIASingaporeProject
 //
-//  Created by Rizqi Imam Gilang Widianto on 16/12/20.
+//  Created by Rizqi Imam Gilang Widianto on 17/12/20.
 //
 
 import Foundation
-
 // MARK: - Stocks
-struct Stock: Decodable {
-    let metaData: MetaData
-    let timeSeriesDaily: [String: TimeSeriesDaily]
+struct IntradayStocks: Decodable {
+    let metaData: IntraDayMeta
+    let timeSeriesIntraday: [String: TimeSeriesIntraday]
 
     enum CodingKeys: String, CodingKey {
         case metaData = "Meta Data"
-        case timeSeriesDaily = "Time Series (Daily)"
+        case timeSeriesIntraday = "Time Series (5min)"
     }
 }
 
-struct MetaData: Decodable {
-    let the1Information, the2Symbol, the3LastRefreshed, the4OutputSize: String
-    let the5TimeZone: String
+struct IntraDayMeta: Decodable {
+    let the1Information, the2Symbol, the3LastRefreshed, the4Interval: String
+    let the5OutputSize, the6TimeZone: String
 
     enum CodingKeys: String, CodingKey {
         case the1Information = "1. Information"
         case the2Symbol = "2. Symbol"
         case the3LastRefreshed = "3. Last Refreshed"
-        case the4OutputSize = "4. Output Size"
-        case the5TimeZone = "5. Time Zone"
+        case the4Interval = "4. Interval"
+        case the5OutputSize = "5. Output Size"
+        case the6TimeZone = "6. Time Zone"
     }
 }
 
-struct TimeSeriesDaily: Decodable {
+struct TimeSeriesIntraday: Decodable {
     let the1Open, the2High, the3Low, the4Close: String
     let the5Volume: String
 
@@ -43,6 +43,3 @@ struct TimeSeriesDaily: Decodable {
         case the5Volume = "5. volume"
     }
 }
-
-
-

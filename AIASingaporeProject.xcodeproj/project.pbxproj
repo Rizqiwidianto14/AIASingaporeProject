@@ -17,9 +17,11 @@
 		9FB5DE37258A106500C5B7B5 /* AIASingaporeProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE36258A106500C5B7B5 /* AIASingaporeProjectTests.swift */; };
 		9FB5DE42258A106500C5B7B5 /* AIASingaporeProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE41258A106500C5B7B5 /* AIASingaporeProjectUITests.swift */; };
 		9FB5DE53258A13BE00C5B7B5 /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE52258A13BE00C5B7B5 /* WebServices.swift */; };
-		9FB5DE5C258A5B3A00C5B7B5 /* Stocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE5B258A5B3A00C5B7B5 /* Stocks.swift */; };
+		9FB5DE5C258A5B3A00C5B7B5 /* DailyStocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE5B258A5B3A00C5B7B5 /* DailyStocks.swift */; };
 		9FB5DE75258B288400C5B7B5 /* DailyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE74258B288400C5B7B5 /* DailyVC.swift */; };
 		9FB5DE7A258B289300C5B7B5 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE79258B289300C5B7B5 /* SettingsVC.swift */; };
+		9FB5DE7F258B3E2B00C5B7B5 /* IntradayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE7E258B3E2B00C5B7B5 /* IntradayCell.swift */; };
+		9FB5DE84258B3FEF00C5B7B5 /* IntraStocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE83258B3FEF00C5B7B5 /* IntraStocks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,9 +58,11 @@
 		9FB5DE41258A106500C5B7B5 /* AIASingaporeProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIASingaporeProjectUITests.swift; sourceTree = "<group>"; };
 		9FB5DE43258A106500C5B7B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FB5DE52258A13BE00C5B7B5 /* WebServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
-		9FB5DE5B258A5B3A00C5B7B5 /* Stocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stocks.swift; sourceTree = "<group>"; };
+		9FB5DE5B258A5B3A00C5B7B5 /* DailyStocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStocks.swift; sourceTree = "<group>"; };
 		9FB5DE74258B288400C5B7B5 /* DailyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyVC.swift; sourceTree = "<group>"; };
 		9FB5DE79258B289300C5B7B5 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		9FB5DE7E258B3E2B00C5B7B5 /* IntradayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntradayCell.swift; sourceTree = "<group>"; };
+		9FB5DE83258B3FEF00C5B7B5 /* IntraStocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntraStocks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 				9FB5DE2A258A106500C5B7B5 /* LaunchScreen.storyboard */,
 				9FB5DE2D258A106500C5B7B5 /* Info.plist */,
 				9FB5DE25258A106300C5B7B5 /* AIASingaporeProject.xcdatamodeld */,
+				9FB5DE7E258B3E2B00C5B7B5 /* IntradayCell.swift */,
 			);
 			path = AIASingaporeProject;
 			sourceTree = "<group>";
@@ -152,7 +157,8 @@
 		9FB5DE63258A5B7900C5B7B5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9FB5DE5B258A5B3A00C5B7B5 /* Stocks.swift */,
+				9FB5DE5B258A5B3A00C5B7B5 /* DailyStocks.swift */,
+				9FB5DE83258B3FEF00C5B7B5 /* IntraStocks.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -300,11 +306,13 @@
 				9FB5DE53258A13BE00C5B7B5 /* WebServices.swift in Sources */,
 				9FB5DE27258A106300C5B7B5 /* AIASingaporeProject.xcdatamodeld in Sources */,
 				9FB5DE21258A106300C5B7B5 /* IntradayVC.swift in Sources */,
-				9FB5DE5C258A5B3A00C5B7B5 /* Stocks.swift in Sources */,
+				9FB5DE5C258A5B3A00C5B7B5 /* DailyStocks.swift in Sources */,
 				9FB5DE1D258A106300C5B7B5 /* AppDelegate.swift in Sources */,
 				9FB5DE7A258B289300C5B7B5 /* SettingsVC.swift in Sources */,
 				9FB5DE1F258A106300C5B7B5 /* SceneDelegate.swift in Sources */,
 				9FB5DE75258B288400C5B7B5 /* DailyVC.swift in Sources */,
+				9FB5DE7F258B3E2B00C5B7B5 /* IntradayCell.swift in Sources */,
+				9FB5DE84258B3FEF00C5B7B5 /* IntraStocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
