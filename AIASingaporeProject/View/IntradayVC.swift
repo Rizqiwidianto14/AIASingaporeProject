@@ -12,6 +12,8 @@ class IntradayVC: UIViewController {
     var open = [String]()
     var high = [String]()
     var low = [String]()
+    @IBOutlet weak var tableView: UITableView!
+   
     
     
     override func viewDidLoad() {
@@ -22,7 +24,7 @@ class IntradayVC: UIViewController {
     }
     
     private func setUp(){
-        let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BBCA&interval=5min&apikey=JD109RV7JNDNU0Z0")!
+        let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=JD109RV7JNDNU0Z0")!
         IntradayServices().getStockData(url: url) { stocks in
             if let stocks = stocks{
                 
@@ -33,6 +35,11 @@ class IntradayVC: UIViewController {
                     self.low.append(stocks[element]?.the3Low ?? "nil")
                 }
                 
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+                
             }
 
             
@@ -40,6 +47,26 @@ class IntradayVC: UIViewController {
     }
     
     
+    
+    
+    
+    
+}
+
+extension IntradayVC: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(open.count)
+        return open.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "intradayCell", for: indexPath) as? IntradayCell else {
+            fatalError("IntradayTableView not found")
+        }
+        
+        cell.dateLabel.text = open[indexPath.row]
+        return cell
+    }
     
     
 }
