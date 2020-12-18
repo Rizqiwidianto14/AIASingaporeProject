@@ -16,7 +16,7 @@ class DailyServices{
                 print(error.localizedDescription)
                 completion(nil)
             } else if let data = data {
-                let stockList = try? JSONDecoder().decode(DailyStock.self, from: data)
+                let stockList = try? JSONDecoder().decode(DailyViewModel.self, from: data)
                 if let stockList = stockList {
                     completion(stockList.timeSeriesDaily)
                 }
@@ -27,35 +27,58 @@ class DailyServices{
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class IntradayServices{
     var open = [String]()
     var high = [String]()
     var low = [String]()
 
     func getStockData(url: URL, completion: @escaping ([String: TimeSeriesIntraday]?) -> ()){
-        URLSession.shared.dataTask(with: url) { [self] (data, response, error) in
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print(error.localizedDescription)
                 completion(nil)
             } else if let data = data {
-                let stockList = try? JSONDecoder().decode(IntradayStocks.self, from: data)
+                let stockList = try? JSONDecoder().decode(IntradayViewModel.self, from: data)
                 if let stockList = stockList {
                     completion(stockList.timeSeriesIntraday)
+                    print(type(of: stockList.timeSeriesIntraday))
                 }
-                
-////                Narik Tanggal
-//                let myDictionary = stockList!.timeSeriesIntraday
-//
-//                let arrayOfKeys: [String] = myDictionary.map{String($0.key)}
-//                // Narik Specific Value
-//
-//
-//                for element in arrayOfKeys{
-//                    self.open.append(stockList?.timeSeriesIntraday[element]?.the1Open ?? "nil")
-//                    self.high.append(stockList?.timeSeriesIntraday[element]?.the2High ?? "nil")
-//                    self.low.append(stockList?.timeSeriesIntraday[element]?.the3Low ?? "nil")
-//                }
-                
+//                print("stockList: \(stockList)")
+
+//                Narik Tanggal
+                if let myDictionary = stockList?.timeSeriesIntraday{
+                    let arrayOfKeys: [String] = myDictionary.map{String($0.key)}
+                    // Narik Specific Value
+
+
+                    for element in arrayOfKeys{
+                        
+                        self.open.append(stockList?.timeSeriesIntraday[element]?.the1Open.value ?? "nil")
+                        self.high.append(stockList?.timeSeriesIntraday[element]?.the2High.value  ?? "nil")
+                        self.low.append(stockList?.timeSeriesIntraday[element]?.the3Low.value  ?? "nil")
+                    }
+                    
+                    print(self.open)
+                }
+
+
+
 
             }
         }.resume()

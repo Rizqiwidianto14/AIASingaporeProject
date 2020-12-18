@@ -1,15 +1,15 @@
 //
-//  Model.swift
+//  DailyViewModel.swift
 //  AIASingaporeProject
 //
-//  Created by Rizqi Imam Gilang Widianto on 16/12/20.
+//  Created by Rizqi Imam Gilang Widianto on 18/12/20.
 //
 
 import Foundation
 
 // MARK: - Stocks
-struct DailyStock: Decodable {
-    let metaData: MetaData
+struct DailyViewModel: Decodable {
+    let metaData: DailyMetadata
     let timeSeriesDaily: [String: TimeSeriesDaily]
 
     enum CodingKeys: String, CodingKey {
@@ -18,7 +18,7 @@ struct DailyStock: Decodable {
     }
 }
 
-struct MetaData: Decodable {
+struct DailyMetadata: Decodable {
     let the1Information, the2Symbol, the3LastRefreshed, the4OutputSize: String
     let the5TimeZone: String
 

@@ -8,12 +8,11 @@
 import UIKit
 
 class IntradayVC: UIViewController {
-    private var intraDayVM: IntradayListViewModel!
+//    private var intraDayVM: IntradayListViewModel!
     var open = [String]()
     var high = [String]()
     var low = [String]()
     @IBOutlet weak var tableView: UITableView!
-   
     
     
     override func viewDidLoad() {
@@ -25,24 +24,25 @@ class IntradayVC: UIViewController {
     
     private func setUp(){
         let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=JD109RV7JNDNU0Z0")!
+        
         IntradayServices().getStockData(url: url) { stocks in
             if let stocks = stocks{
-                
+
                 let arrayOfKeys = stocks.keys
                 for element in arrayOfKeys{
-                    self.open.append(stocks[element]?.the1Open ?? "nil")
-                    self.high.append(stocks[element]?.the2High ?? "nil")
-                    self.low.append(stocks[element]?.the3Low ?? "nil")
+                    self.open.append(stocks[element]?.the1Open.value ?? "nil")
+                    self.high.append(stocks[element]?.the2High.value ?? "nil")
+                    self.low.append(stocks[element]?.the3Low.value ?? "nil")
+                    
                 }
-                
+
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                
-                
+
+
             }
 
-            
         }
     }
     
@@ -71,5 +71,24 @@ extension IntradayVC: UITableViewDelegate, UITableViewDataSource{
     
 }
 
+
+//        let stockResource = Resource<IntradayViewModel> (url: url) { data in
+//            let intradayVM = try? JSONDecoder().decode(IntradayViewModel.self, from: data)
+//            return intradayVM
+//        }
+//
+//        Webservice().load(resource: stockResource) { [weak self] result in
+//            if let intradayVM = result{
+//
+//                    self?.dismiss(animated: true, completion: nil)
+//                let arrayOfKeys = intradayVM.timeSeriesIntraday.keys
+//                    for element in arrayOfKeys{
+//                        print(element)
+//                    }
+//
+//
+//            }
+//
+//        }
 
 
