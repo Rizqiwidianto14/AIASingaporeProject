@@ -7,6 +7,14 @@
 
 import Foundation
 
+
+class IntradayListViewModel{
+    var open = [String]()
+    var high = [String]()
+    var low = [String]()
+}
+
+
 class Dynamic<T>: Decodable where T: Decodable {
     typealias Listener = (T) -> ()
     var listener: Listener?

@@ -8,55 +8,59 @@
 import UIKit
 
 class IntradayVC: UIViewController {
-//    private var intraDayVM: IntradayListViewModel!
-    var open = [String]()
-    var high = [String]()
-    var low = [String]()
+
+    var arrayOfKeys = [String]()
+    var intradayListVM = IntradayListViewModel()
+    var intradayVM: IntradayViewModel?
+    
     @IBOutlet weak var tableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        //
         setUp()
     }
     
-    private func setUp(){
-        let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=JD109RV7JNDNU0Z0")!
-        
-        IntradayServices().getStockData(url: url) { stocks in
-            if let stocks = stocks{
+    func setUp() {
+       let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=JD109RV7JNDNU0Z0")!
 
-                let arrayOfKeys = stocks.keys
-                for element in arrayOfKeys{
-                    self.open.append(stocks[element]?.the1Open.value ?? "nil")
-                    self.high.append(stocks[element]?.the2High.value ?? "nil")
-                    self.low.append(stocks[element]?.the3Low.value ?? "nil")
-                    
-                }
+       let intradayResource = Resource<IntradayViewModel>(url: url) { data in
 
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+           let intradayVM = try? JSONDecoder().decode(IntradayViewModel.self, from: data)
+           return intradayVM
+       }
 
+       Webservice().load(resource: intradayResource) { [weak self] result in
 
+           if let intradayVM = result {
+            let dict = intradayVM.timeSeriesIntraday
+            let myKeys: [String] = dict.map{String($0.key)}
+            self?.arrayOfKeys = myKeys
+            for element in self!.arrayOfKeys{
+                self?.intradayListVM.open.append(intradayVM.timeSeriesIntraday[element]?.the1Open.value ?? "nil")
             }
+            print(self?.intradayListVM.open ?? "nil")
+            
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+            
+            
+        
+            
 
-        }
-    }
-    
-    
-    
-    
-    
+           }
+
+       }
+   }
+  
     
 }
 
 extension IntradayVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(open.count)
-        return open.count
+      
+        return arrayOfKeys.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,7 +68,7 @@ extension IntradayVC: UITableViewDelegate, UITableViewDataSource{
             fatalError("IntradayTableView not found")
         }
         
-        cell.dateLabel.text = open[indexPath.row]
+        cell.dateLabel.text = intradayListVM.open[indexPath.row]
         return cell
     }
     
@@ -90,5 +94,56 @@ extension IntradayVC: UITableViewDelegate, UITableViewDataSource{
 //            }
 //
 //        }
+
+
+
+
+
+
+
+
+
+
+//    private func setUp(){
+//        let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=JD109RV7JNDNU0Z0")!
+//
+//        let intradayResource = Resource<IntradayViewModel>(url: url) { data in
+//
+//            let intradayVM = try? JSONDecoder().decode(IntradayViewModel.self, from: data)
+//            return intradayVM
+//        }
+//
+//        Webservice().load(resource: intradayResource) { [weak self] result in
+//
+//            if let intradayVM = result {
+//                print(result?.timeSeriesIntraday.keys)
+//            }
+//
+//        }
+////        IntradayServices().getStockData(url: url) { stocks in
+////            if let stocks = stocks{
+////
+////                let arrayOfKeys = stocks.keys
+////                for element in arrayOfKeys{
+////                    self.open.append(stocks[element]?.the1Open.value ?? "nil")
+////                    self.high.append(stocks[element]?.the2High.value ?? "nil")
+////                    self.low.append(stocks[element]?.the3Low.value ?? "nil")
+////
+////                }
+////
+////                DispatchQueue.main.async {
+////                    self.tableView.reloadData()
+////                }
+////
+////
+////            }
+////
+////        }
+//    }
+
+
+
+
+
 
 

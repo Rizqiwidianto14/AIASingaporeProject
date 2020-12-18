@@ -36,6 +36,30 @@ class DailyServices{
 
 
 
+struct Resource<T> {
+    let url: URL
+    let parse: (Data) -> T?
+}
+
+final class Webservice {
+    
+    func load<T>(resource: Resource<T>, completion: @escaping (T?) -> ()) {
+        
+        URLSession.shared.dataTask(with: resource.url) { data, response, error in
+        
+            if let data = data {
+                DispatchQueue.main.async {
+                     completion(resource.parse(data))
+                }
+            } else {
+                completion(nil)
+            }
+            
+        }.resume()
+        
+    }
+    
+}
 
 
 
@@ -68,12 +92,12 @@ class IntradayServices{
 
 
                     for element in arrayOfKeys{
-                        
+
                         self.open.append(stockList?.timeSeriesIntraday[element]?.the1Open.value ?? "nil")
                         self.high.append(stockList?.timeSeriesIntraday[element]?.the2High.value  ?? "nil")
                         self.low.append(stockList?.timeSeriesIntraday[element]?.the3Low.value  ?? "nil")
                     }
-                    
+
                     print(self.open)
                 }
 
