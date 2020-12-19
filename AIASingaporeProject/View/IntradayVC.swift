@@ -8,8 +8,10 @@
 import UIKit
 
 class IntradayVC: UIViewController {
-
+    
     var arrayOfKeys = [String]()
+    
+    
     var intradayListVM = IntradayListViewModel()
     var intradayVM: IntradayViewModel?
     
@@ -32,13 +34,13 @@ class IntradayVC: UIViewController {
     }
     
     
-  
+    
     
 }
 
 extension IntradayVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      
+        
         return arrayOfKeys.count
     }
     
@@ -60,49 +62,51 @@ extension IntradayVC: UITableViewDelegate, UITableViewDataSource{
 extension IntradayVC{
     func setUp() {
         let symbol = self.intradayListVM.symbol
-       let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(symbol)&interval=5min&apikey=JD109RV7JNDNU0Z0")!
-     
-       let intradayResource = Resource<IntradayViewModel>(url: url) { data in
-
-           let intradayVM = try? JSONDecoder().decode(IntradayViewModel.self, from: data)
-           return intradayVM
-       }
-
-       Webservice().load(resource: intradayResource) { [weak self] result in
-
-           if let intradayVM = result {
-            let dict = intradayVM.timeSeriesIntraday
-            let myKeys: [String] = dict.map{String($0.key)}
-            self?.arrayOfKeys = myKeys
-            for element in self!.arrayOfKeys{
-                self?.intradayListVM.open.append(intradayVM.timeSeriesIntraday[element]?.the1Open.value ?? "nil")
-                self?.intradayListVM.high.append(intradayVM.timeSeriesIntraday[element]?.the2High.value ?? "nil")
-                self?.intradayListVM.low.append(intradayVM.timeSeriesIntraday[element]?.the3Low.value ?? "nil")
-            }
-
+        let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(symbol)&interval=5min&apikey=JD109RV7JNDNU0Z0")!
+        
+        let intradayResource = Resource<IntradayViewModel>(url: url) { data in
             
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
+            let intradayVM = try? JSONDecoder().decode(IntradayViewModel.self, from: data)
+            return intradayVM
+        }
+        
+        Webservice().load(resource: intradayResource) { [weak self] result in
+            
+            if let intradayVM = result {
+                let dict = intradayVM.timeSeriesIntraday
+                let myKeys: [String] = dict.map{String($0.key)}
+                let dateFormatter = DateFormatter()
+                
+                var arrayOfDate = [String]()
+                for element in myKeys{
+                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    let date = dateFormatter.date(from: element)
+                    let newDate = dateFormatter.string(from: date!)
+                    arrayOfDate.append(newDate)
+                }
+                
+                
+                let sortedArray = arrayOfDate.sorted{dateFormatter.date(from: $0) ?? Date() > dateFormatter.date(from: $1) ?? Date()}
+                print(sortedArray)
+                for element in sortedArray{
+                    self?.intradayListVM.open.append(intradayVM.timeSeriesIntraday[element]?.the1Open.value ?? "nil")
+                    self?.intradayListVM.high.append(intradayVM.timeSeriesIntraday[element]?.the2High.value ?? "nil")
+                    self?.intradayListVM.low.append(intradayVM.timeSeriesIntraday[element]?.the3Low.value ?? "nil")
+                    
+                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    let date = dateFormatter.date(from: element)
+                    dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+                    let newDate = dateFormatter.string(from: date!)
+                    self?.arrayOfKeys.append(newDate)
+                }
+
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+                
             }
-
-           }
-
-       }
-   }
+            
+        }
+    }
 }
 
-
-
-
-
-
-//            for element in self!.arrayOfKeys{
-//                let dateFormatter = DateFormatter()
-//                dateFormatter.dateFormat = "YYYY-MM-DD hh:mm:ss +zzzz"
-//                var dateObj = dateFormatter.date(from: element)
-//                print(dateObj!)
-////                dateFormatter.dateFormat = "MM-dd-yyyy"
-////                let date = dateFormatter.string(from: dateObj!)
-////                self?.intradayListVM.date.append(date)
-//
-//            }
