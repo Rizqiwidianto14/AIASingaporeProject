@@ -15,6 +15,7 @@ class IntradayCell: UITableViewCell {
     @IBOutlet weak var highValue: UILabel!
     @IBOutlet weak var lowLabel: UILabel!
     @IBOutlet weak var lowValue: UILabel!
+    @IBOutlet weak var symbolLabel: UILabel!
     
     
     

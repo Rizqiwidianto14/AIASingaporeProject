@@ -29,12 +29,6 @@ class DailyServices{
 
 
 
-
-
-
-
-
-
 struct Resource<T> {
     let url: URL
     let parse: (Data) -> T?
@@ -59,11 +53,6 @@ final class Webservice {
     }
     
 }
-
-
-
-
-
 
 
 //class IntradayServices{

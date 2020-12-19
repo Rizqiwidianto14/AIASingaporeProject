@@ -13,17 +13,55 @@ class IntradayVC: UIViewController {
     var intradayListVM = IntradayListViewModel()
     var intradayVM: IntradayViewModel?
     
-    @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var searchSymbol: BindingTextField!{
+        didSet{
+            searchSymbol.bind{ self.intradayListVM.symbol = $0 }
+        }
+    }
+    @IBOutlet weak var searchButton: UIButton!
     
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBAction func searchButtonPressed(){
+        print(self.intradayListVM.symbol)
+        setUp()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
     }
     
-    func setUp() {
-       let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=JD109RV7JNDNU0Z0")!
+    
+  
+    
+}
 
+extension IntradayVC: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      
+        return arrayOfKeys.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "intradayCell", for: indexPath) as? IntradayCell else {
+            fatalError("IntradayTableView not found")
+        }
+        
+        cell.dateLabel.text = arrayOfKeys[indexPath.row]
+        cell.openValue.text = intradayListVM.open[indexPath.row]
+        cell.highValue.text = intradayListVM.high[indexPath.row]
+        cell.lowValue.text = intradayListVM.low[indexPath.row]
+        cell.symbolLabel.text = self.intradayListVM.symbol
+        return cell
+    }
+    
+}
+
+extension IntradayVC{
+    func setUp() {
+        let symbol = self.intradayListVM.symbol
+       let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(symbol)&interval=5min&apikey=JD109RV7JNDNU0Z0")!
+     
        let intradayResource = Resource<IntradayViewModel>(url: url) { data in
 
            let intradayVM = try? JSONDecoder().decode(IntradayViewModel.self, from: data)
@@ -51,30 +89,7 @@ class IntradayVC: UIViewController {
 
        }
    }
-  
-    
 }
-
-extension IntradayVC: UITableViewDelegate, UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      
-        return arrayOfKeys.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "intradayCell", for: indexPath) as? IntradayCell else {
-            fatalError("IntradayTableView not found")
-        }
-        
-        cell.dateLabel.text = arrayOfKeys[indexPath.row]
-        cell.openValue.text = intradayListVM.open[indexPath.row]
-        cell.highValue.text = intradayListVM.high[indexPath.row]
-        cell.lowValue.text = intradayListVM.low[indexPath.row]
-        return cell
-    }
-    
-}
-
 
 
 

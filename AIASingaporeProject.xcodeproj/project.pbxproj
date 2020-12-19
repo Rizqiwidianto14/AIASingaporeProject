@@ -22,6 +22,7 @@
 		9FB5DE7F258B3E2B00C5B7B5 /* IntradayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE7E258B3E2B00C5B7B5 /* IntradayCell.swift */; };
 		9FB5DE94258B558F00C5B7B5 /* IntradayListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE93258B558F00C5B7B5 /* IntradayListViewModel.swift */; };
 		9FB5DEB5258C919500C5B7B5 /* DailyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DEB4258C919500C5B7B5 /* DailyListViewModel.swift */; };
+		9FB5DEC8258E1CE100C5B7B5 /* BindingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DEC7258E1CE100C5B7B5 /* BindingTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		9FB5DE7E258B3E2B00C5B7B5 /* IntradayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntradayCell.swift; sourceTree = "<group>"; };
 		9FB5DE93258B558F00C5B7B5 /* IntradayListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntradayListViewModel.swift; sourceTree = "<group>"; };
 		9FB5DEB4258C919500C5B7B5 /* DailyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyListViewModel.swift; sourceTree = "<group>"; };
+		9FB5DEC7258E1CE100C5B7B5 /* BindingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 		9FB5DEA7258B636400C5B7B5 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				9FB5DEC7258E1CE100C5B7B5 /* BindingTextField.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				9FB5DE7A258B289300C5B7B5 /* SettingsVC.swift in Sources */,
 				9FB5DE1F258A106300C5B7B5 /* SceneDelegate.swift in Sources */,
 				9FB5DEB5258C919500C5B7B5 /* DailyListViewModel.swift in Sources */,
+				9FB5DEC8258E1CE100C5B7B5 /* BindingTextField.swift in Sources */,
 				9FB5DE75258B288400C5B7B5 /* DailyVC.swift in Sources */,
 				9FB5DE7F258B3E2B00C5B7B5 /* IntradayCell.swift in Sources */,
 			);

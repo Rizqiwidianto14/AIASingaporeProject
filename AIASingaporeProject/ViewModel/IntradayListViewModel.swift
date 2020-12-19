@@ -13,6 +13,8 @@ class IntradayListViewModel{
     var high = [String]()
     var low = [String]()
     var date = [String]()
+    
+    var symbol = "IBM"
 }
 
 
@@ -94,4 +96,6 @@ struct IntraDayMeta: Decodable {
         case the6TimeZone = "6. Time Zone"
     }
 }
+
+
 
