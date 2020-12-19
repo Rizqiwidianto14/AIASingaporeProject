@@ -7,10 +7,27 @@
 
 import Foundation
 
+class DailyListViewModel{
+    var openOne = [String]()
+    var lowOne = [String]()
+    var openTwo = [String]()
+    var lowTwo = [String]()
+    var date = [String]()
+    
+    var symbol = "IBM"
+}
+
 // MARK: - Stocks
 struct DailyViewModel: Decodable {
-    let metaData: DailyMetadata
     let timeSeriesDaily: [String: TimeSeriesDaily]
+    let metaData: DailyMetadata
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        metaData = try container.decode(DailyMetadata.self, forKey: .metaData)
+        timeSeriesDaily = try container.decode([String: TimeSeriesDaily].self, forKey: .timeSeriesDaily)
+    }
+
 
     enum CodingKeys: String, CodingKey {
         case metaData = "Meta Data"
@@ -18,29 +35,37 @@ struct DailyViewModel: Decodable {
     }
 }
 
-struct DailyMetadata: Decodable {
-    let the1Information, the2Symbol, the3LastRefreshed, the4OutputSize: String
-    let the5TimeZone: String
+
+
+struct TimeSeriesDaily: Decodable {
+    let open, low: Dynamic<String>
+    
+  
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        open = Dynamic(try container.decode(String.self, forKey: .open))
+        low = Dynamic(try container.decode(String.self, forKey: .low))
+
+    }
 
     enum CodingKeys: String, CodingKey {
-        case the1Information = "1. Information"
-        case the2Symbol = "2. Symbol"
-        case the3LastRefreshed = "3. Last Refreshed"
-        case the4OutputSize = "4. Output Size"
-        case the5TimeZone = "5. Time Zone"
+        case open = "1. open"
+        case low = "3. low"
+
     }
 }
 
-struct TimeSeriesDaily: Decodable {
-    let the1Open, the2High, the3Low, the4Close: String
-    let the5Volume: String
+struct DailyMetadata: Decodable {
+    let information, symbol, lastRefresh, outputSize: String
+    let timeZone: String
 
     enum CodingKeys: String, CodingKey {
-        case the1Open = "1. open"
-        case the2High = "2. high"
-        case the3Low = "3. low"
-        case the4Close = "4. close"
-        case the5Volume = "5. volume"
+        case information = "1. Information"
+        case symbol = "2. Symbol"
+        case lastRefresh = "3. Last Refreshed"
+        case outputSize = "4. Output Size"
+        case timeZone = "5. Time Zone"
     }
 }
 
