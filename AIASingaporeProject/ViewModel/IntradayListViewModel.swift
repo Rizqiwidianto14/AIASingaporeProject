@@ -12,6 +12,7 @@ class IntradayListViewModel{
     var open = [String]()
     var high = [String]()
     var low = [String]()
+    var date = [String]()
 }
 
 

@@ -41,7 +41,7 @@ class IntradayVC: UIViewController {
                 self?.intradayListVM.high.append(intradayVM.timeSeriesIntraday[element]?.the2High.value ?? "nil")
                 self?.intradayListVM.low.append(intradayVM.timeSeriesIntraday[element]?.the3Low.value ?? "nil")
             }
-            print(self?.intradayListVM.open ?? "nil")
+
             
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
@@ -80,3 +80,14 @@ extension IntradayVC: UITableViewDelegate, UITableViewDataSource{
 
 
 
+
+//            for element in self!.arrayOfKeys{
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.dateFormat = "YYYY-MM-DD hh:mm:ss +zzzz"
+//                var dateObj = dateFormatter.date(from: element)
+//                print(dateObj!)
+////                dateFormatter.dateFormat = "MM-dd-yyyy"
+////                let date = dateFormatter.string(from: dateObj!)
+////                self?.intradayListVM.date.append(date)
+//
+//            }
