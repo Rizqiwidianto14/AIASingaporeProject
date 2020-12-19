@@ -13,7 +13,6 @@ class IntradayVC: UIViewController {
     
     
     var intradayListVM = IntradayListViewModel()
-    var intradayVM: IntradayViewModel?
     
     @IBOutlet weak var searchSymbol: BindingTextField!{
         didSet{

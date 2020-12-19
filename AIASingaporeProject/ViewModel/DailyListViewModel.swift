@@ -14,7 +14,8 @@ class DailyListViewModel{
     var lowTwo = [String]()
     var date = [String]()
     
-    var symbol = "IBM"
+    var firstSymbol = "IBM"
+    var secondSymbol = "AAPL"
 }
 
 // MARK: - Stocks

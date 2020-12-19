@@ -8,30 +8,38 @@
 import UIKit
 
 class DailyVC: UIViewController {
-    @IBOutlet weak var firstSymbol: UITextField!
-    @IBOutlet weak var secondSymbol: UITextField!
-    @IBOutlet weak var compareButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
     var dailyListVM = DailyListViewModel()
     var arrayOfKeysOne = [String]()
     var arrayOfKeysTwo = [String]()
+
+    @IBOutlet weak var searchSymbolOne: BindingTextField!{
+        didSet{
+            searchSymbolOne.bind{ self.dailyListVM.firstSymbol = $0  }
+        }
+    }
+    @IBOutlet weak var searchSymbolTwo: BindingTextField!{
+        didSet{
+            searchSymbolTwo.bind{ self.dailyListVM.secondSymbol = $0 }
+        }
+    }
     
+    
+  
+    @IBOutlet weak var compareButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+   
+
+    
+    @IBAction func compareButtonPressed(){
+        setUp()
+    }
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUp()
+//        setUp()
 
-        // Do any additional setup after loading the view.
-//        let firstURL = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=JD109RV7JNDNU0Z0")!
-
-//        DailyServices().getStockData(url: firstURL) { result in
-//
-//            if let result = result{
-//                print(result)
-//            }
-//        }
     }
     
 
@@ -61,8 +69,10 @@ extension DailyVC: UITableViewDelegate,UITableViewDataSource{
 
 extension DailyVC{
     func setUp() {
-        let firstURL = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=JD109RV7JNDNU0Z0")!
-        let secondURL = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=BBCA&apikey=JD109RV7JNDNU0Z0")!
+        let firstSymbol = self.dailyListVM.firstSymbol
+        let secondSymbol = self.dailyListVM.secondSymbol
+        let firstURL = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=\(firstSymbol)&apikey=JD109RV7JNDNU0Z0")!
+        let secondURL = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=\(secondSymbol)&apikey=JD109RV7JNDNU0Z0")!
        let firstResource = Resource<DailyViewModel>(url: firstURL) { data in
         
            let dailyVM = try? JSONDecoder().decode(DailyViewModel.self, from: data)

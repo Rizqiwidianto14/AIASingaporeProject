@@ -43,6 +43,9 @@
                                                 <state key="normal" title="Compare">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="compareButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="QtK-P7-SNC"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBlueColor"/>
@@ -293,8 +296,8 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="compareButton" destination="HXC-mb-mMo" id="ij5-7P-b1V"/>
-                        <outlet property="firstSymbol" destination="2Um-yB-HCB" id="nVe-VA-xW6"/>
-                        <outlet property="secondSymbol" destination="9Sc-Yz-OS8" id="Dgn-4z-lF3"/>
+                        <outlet property="searchSymbolOne" destination="2Um-yB-HCB" id="Sl8-4b-GHi"/>
+                        <outlet property="searchSymbolTwo" destination="9Sc-Yz-OS8" id="aMh-Z8-131"/>
                         <outlet property="tableView" destination="yBQ-vM-XVh" id="5GK-WE-h0u"/>
                     </connections>
                 </viewController>
