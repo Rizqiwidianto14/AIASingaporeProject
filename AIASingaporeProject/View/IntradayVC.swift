@@ -11,7 +11,7 @@ class IntradayVC: UIViewController {
     
     var arrayOfKeys = [String]()
     var sorter = "Date"
-   
+    
     
     
     var intradayListVM = IntradayListViewModel()
@@ -208,7 +208,7 @@ extension IntradayVC{
                     }
                     sorterValue(inputDict: newDict)
                 }
-
+                
             }
             
         }

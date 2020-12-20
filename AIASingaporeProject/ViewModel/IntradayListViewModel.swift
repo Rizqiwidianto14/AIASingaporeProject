@@ -17,7 +17,7 @@ class IntradayListViewModel{
     var symbol = "IBM"
     var outputSize = "compact"
     var interval = "5min"
-
+    
 }
 
 
@@ -55,7 +55,7 @@ struct IntradayViewModel: Decodable {
         metaData = try container.decode(IntraDayMeta.self, forKey: .metaData)
         timeSeriesIntraday = try container.decode([String: TimeSeriesIntraday].self, forKey: .timeSeriesIntraday)
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case timeSeriesIntraday = "Time Series (5min)"
         case metaData = "Meta Data"
@@ -75,8 +75,8 @@ struct TimeSeriesIntraday: Decodable {
         the4Close = Dynamic(try container.decode(String.self, forKey: .the4Close))
         the5Volume = Dynamic(try container.decode(String.self, forKey: .the5Volume))
     }
-
-
+    
+    
     enum CodingKeys: String, CodingKey {
         case the1Open = "1. open"
         case the2High = "2. high"
@@ -89,7 +89,7 @@ struct TimeSeriesIntraday: Decodable {
 struct IntraDayMeta: Decodable {
     let the1Information, the2Symbol, the3LastRefreshed, the4Interval: String
     let the5OutputSize, the6TimeZone: String
-
+    
     enum CodingKeys: String, CodingKey {
         case the1Information = "1. Information"
         case the2Symbol = "2. Symbol"

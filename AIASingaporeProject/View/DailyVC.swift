@@ -100,6 +100,7 @@ extension DailyVC{
             return dailyVM
         }
         
+        
 
        Webservice().load(resource: firstResource) { [weak self] result in
            if let dailyVM = result {
