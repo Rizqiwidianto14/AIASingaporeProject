@@ -16,6 +16,8 @@ class DailyListViewModel{
     
     var firstSymbol = "IBM"
     var secondSymbol = "AAPL"
+    
+    var outputSize = "compact"
 }
 
 

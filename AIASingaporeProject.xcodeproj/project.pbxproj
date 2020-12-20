@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9FA6EE39258F8DC60044B794 /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA6EE38258F8DC60044B794 /* NotificationCenter.swift */; };
+		9FA6EE4C258FAC6C0044B794 /* PreferenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA6EE4B258FAC6C0044B794 /* PreferenceViewModel.swift */; };
 		9FB5DE1D258A106300C5B7B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE1C258A106300C5B7B5 /* AppDelegate.swift */; };
 		9FB5DE1F258A106300C5B7B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE1E258A106300C5B7B5 /* SceneDelegate.swift */; };
 		9FB5DE21258A106300C5B7B5 /* IntradayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE20258A106300C5B7B5 /* IntradayVC.swift */; };
@@ -18,7 +20,7 @@
 		9FB5DE42258A106500C5B7B5 /* AIASingaporeProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE41258A106500C5B7B5 /* AIASingaporeProjectUITests.swift */; };
 		9FB5DE53258A13BE00C5B7B5 /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE52258A13BE00C5B7B5 /* WebServices.swift */; };
 		9FB5DE75258B288400C5B7B5 /* DailyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE74258B288400C5B7B5 /* DailyVC.swift */; };
-		9FB5DE7A258B289300C5B7B5 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE79258B289300C5B7B5 /* SettingsVC.swift */; };
+		9FB5DE7A258B289300C5B7B5 /* PreferencesCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE79258B289300C5B7B5 /* PreferencesCV.swift */; };
 		9FB5DE7F258B3E2B00C5B7B5 /* IntradayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE7E258B3E2B00C5B7B5 /* IntradayCell.swift */; };
 		9FB5DE94258B558F00C5B7B5 /* IntradayListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE93258B558F00C5B7B5 /* IntradayListViewModel.swift */; };
 		9FB5DEB5258C919500C5B7B5 /* DailyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DEB4258C919500C5B7B5 /* DailyListViewModel.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9FA6EE38258F8DC60044B794 /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
+		9FA6EE4B258FAC6C0044B794 /* PreferenceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceViewModel.swift; sourceTree = "<group>"; };
 		9FB5DE19258A106300C5B7B5 /* AIASingaporeProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIASingaporeProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB5DE1C258A106300C5B7B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FB5DE1E258A106300C5B7B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,7 +65,7 @@
 		9FB5DE43258A106500C5B7B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FB5DE52258A13BE00C5B7B5 /* WebServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
 		9FB5DE74258B288400C5B7B5 /* DailyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyVC.swift; sourceTree = "<group>"; };
-		9FB5DE79258B289300C5B7B5 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		9FB5DE79258B289300C5B7B5 /* PreferencesCV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesCV.swift; sourceTree = "<group>"; };
 		9FB5DE7E258B3E2B00C5B7B5 /* IntradayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntradayCell.swift; sourceTree = "<group>"; };
 		9FB5DE93258B558F00C5B7B5 /* IntradayListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntradayListViewModel.swift; sourceTree = "<group>"; };
 		9FB5DEB4258C919500C5B7B5 /* DailyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyListViewModel.swift; sourceTree = "<group>"; };
@@ -163,7 +167,7 @@
 			children = (
 				9FB5DE20258A106300C5B7B5 /* IntradayVC.swift */,
 				9FB5DE74258B288400C5B7B5 /* DailyVC.swift */,
-				9FB5DE79258B289300C5B7B5 /* SettingsVC.swift */,
+				9FB5DE79258B289300C5B7B5 /* PreferencesCV.swift */,
 				9FB5DE7E258B3E2B00C5B7B5 /* IntradayCell.swift */,
 				9FB5DECC258E3EAB00C5B7B5 /* DailyCell.swift */,
 			);
@@ -175,6 +179,7 @@
 			children = (
 				9FB5DE93258B558F00C5B7B5 /* IntradayListViewModel.swift */,
 				9FB5DEB4258C919500C5B7B5 /* DailyListViewModel.swift */,
+				9FA6EE4B258FAC6C0044B794 /* PreferenceViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				9FB5DEC7258E1CE100C5B7B5 /* BindingTextField.swift */,
+				9FA6EE38258F8DC60044B794 /* NotificationCenter.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -322,8 +328,10 @@
 				9FB5DE27258A106300C5B7B5 /* AIASingaporeProject.xcdatamodeld in Sources */,
 				9FB5DE21258A106300C5B7B5 /* IntradayVC.swift in Sources */,
 				9FB5DE94258B558F00C5B7B5 /* IntradayListViewModel.swift in Sources */,
+				9FA6EE4C258FAC6C0044B794 /* PreferenceViewModel.swift in Sources */,
 				9FB5DE1D258A106300C5B7B5 /* AppDelegate.swift in Sources */,
-				9FB5DE7A258B289300C5B7B5 /* SettingsVC.swift in Sources */,
+				9FB5DE7A258B289300C5B7B5 /* PreferencesCV.swift in Sources */,
+				9FA6EE39258F8DC60044B794 /* NotificationCenter.swift in Sources */,
 				9FB5DE1F258A106300C5B7B5 /* SceneDelegate.swift in Sources */,
 				9FB5DEB5258C919500C5B7B5 /* DailyListViewModel.swift in Sources */,
 				9FB5DEC8258E1CE100C5B7B5 /* BindingTextField.swift in Sources */,

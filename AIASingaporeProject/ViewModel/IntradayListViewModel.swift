@@ -15,6 +15,7 @@ class IntradayListViewModel{
     var date = [String]()
     
     var symbol = "IBM"
+    var outputSize = "compact"
 }
 
 

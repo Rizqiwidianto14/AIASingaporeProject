@@ -11,6 +11,7 @@ class IntradayVC: UIViewController {
     
     var arrayOfKeys = [String]()
     var sorter = "Date"
+   
     
     
     var intradayListVM = IntradayListViewModel()
@@ -47,6 +48,12 @@ class IntradayVC: UIViewController {
         sorter = "Low"
         setUp()
     }
+    @IBAction func preferencesButton(_ sender: Any) {
+        let selectedVC = storyboard?.instantiateViewController(identifier: "PreferencesCV") as! PreferencesCV
+        selectedVC.outputDelegate = self
+        present(selectedVC, animated: true, completion: nil)
+    }
+    
     
     
     override func viewDidLoad() {
@@ -80,10 +87,19 @@ extension IntradayVC: UITableViewDelegate, UITableViewDataSource{
     
 }
 
+extension IntradayVC: OutputSizeDelegate {
+    func outputChanged(output: String) {
+        intradayListVM.outputSize = output
+    }
+    
+    
+    
+}
+
 extension IntradayVC{
     func setUp() {
         let symbol = self.intradayListVM.symbol
-        let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(symbol)&interval=5min&apikey=JD109RV7JNDNU0Z0")!
+        let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(symbol)&interval=5min&apikey=JD109RV7JNDNU0Z0&outputsize=\(intradayListVM.outputSize)")!
         
         let intradayResource = Resource<IntradayViewModel>(url: url) { data in
             
