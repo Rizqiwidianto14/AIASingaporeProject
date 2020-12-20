@@ -81,22 +81,4 @@ final class Webservice {
 //}
 
 
-class DailyServices{
 
-    func getStockData(url: URL, completion: @escaping ([String: TimeSeriesDaily]?) -> ()){
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                completion(nil)
-            } else if let data = data {
-                let stockList = try? JSONDecoder().decode(DailyViewModel.self, from: data)
-                if let stockList = stockList {
-                    completion(stockList.timeSeriesDaily)
-                }
-                
-                
-
-            }
-        }.resume()
-    }
-}

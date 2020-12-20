@@ -18,6 +18,7 @@ class DailyListViewModel{
     var secondSymbol = "AAPL"
 }
 
+
 // MARK: - Stocks
 struct DailyViewModel: Decodable {
     let timeSeriesDaily: [String: TimeSeriesDaily]

@@ -75,6 +75,9 @@ extension IntradayVC{
                 let dict = intradayVM.timeSeriesIntraday
                 let myKeys: [String] = dict.map{String($0.key)}
                 let dateFormatter = DateFormatter()
+                self?.intradayListVM.open.removeAll()
+                self?.intradayListVM.high.removeAll()
+                self?.intradayListVM.low.removeAll()
                 
                 var arrayOfDate = [String]()
                 for element in myKeys{
@@ -86,7 +89,6 @@ extension IntradayVC{
                 
                 
                 let sortedArray = arrayOfDate.sorted{dateFormatter.date(from: $0) ?? Date() > dateFormatter.date(from: $1) ?? Date()}
-                print(sortedArray)
                 for element in sortedArray{
                     self?.intradayListVM.open.append(intradayVM.timeSeriesIntraday[element]?.the1Open.value ?? "nil")
                     self?.intradayListVM.high.append(intradayVM.timeSeriesIntraday[element]?.the2High.value ?? "nil")

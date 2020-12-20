@@ -11,17 +11,17 @@ class DailyVC: UIViewController {
     var dailyListVM = DailyListViewModel()
     var arrayOfKeysOne = [String]()
     var arrayOfKeysTwo = [String]()
-
-    @IBOutlet weak var searchSymbolOne: BindingTextField!{
+    @IBOutlet weak var firstTextField: BindingTextField!{
         didSet{
-            searchSymbolOne.bind{ self.dailyListVM.firstSymbol = $0  }
+            firstTextField.bind{ self.dailyListVM.firstSymbol = $0 }
         }
     }
-    @IBOutlet weak var searchSymbolTwo: BindingTextField!{
+    @IBOutlet weak var secondTextField: BindingTextField!{
         didSet{
-            searchSymbolTwo.bind{ self.dailyListVM.secondSymbol = $0 }
+            secondTextField.bind{ self.dailyListVM.secondSymbol = $0 }
         }
     }
+    
     
     
   
@@ -38,7 +38,8 @@ class DailyVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setUp()
+        setUp()
+        
 
     }
     
@@ -55,6 +56,9 @@ extension DailyVC: UITableViewDelegate,UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "dailyCell", for: indexPath) as? DailyCell else {
             fatalError("DailyTableView not found")
         }
+        cell.symbolLabelOne.text = dailyListVM.firstSymbol
+        cell.symbolLabelTwo.text = dailyListVM.secondSymbol
+        
         cell.dateLabel.text = arrayOfKeysTwo[indexPath.row]
         cell.openValueOne.text = dailyListVM.openOne[indexPath.row]
         cell.openValueTwo.text = dailyListVM.openTwo[indexPath.row]
@@ -69,6 +73,7 @@ extension DailyVC: UITableViewDelegate,UITableViewDataSource{
 
 extension DailyVC{
     func setUp() {
+        
         let firstSymbol = self.dailyListVM.firstSymbol
         let secondSymbol = self.dailyListVM.secondSymbol
         let firstURL = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=\(firstSymbol)&apikey=JD109RV7JNDNU0Z0")!
@@ -83,15 +88,17 @@ extension DailyVC{
             let dailyVM = try? JSONDecoder().decode(DailyViewModel.self, from: data)
             return dailyVM
         }
+        
 
        Webservice().load(resource: firstResource) { [weak self] result in
-
            if let dailyVM = result {
             
             let dict = dailyVM.timeSeriesDaily
             let myKeys: [String] = dict.map{String($0.key)}
             let dateFormatter = DateFormatter()
             var arrayOfDate = [String]()
+            self?.dailyListVM.openOne.removeAll()
+            self?.dailyListVM.lowOne.removeAll()
             
             for element in myKeys{
                 dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -119,15 +126,16 @@ extension DailyVC{
            }
 
        }
+        
         Webservice().load(resource: secondResource) { [weak self] result in
-
             if let dailyVM = result {
              
                 let dict = dailyVM.timeSeriesDaily
                 let myKeys: [String] = dict.map{String($0.key)}
                 let dateFormatter = DateFormatter()
                 var arrayOfDate = [String]()
-                
+                self?.dailyListVM.openTwo.removeAll()
+                self?.dailyListVM.lowTwo.removeAll()
                 for element in myKeys{
                     dateFormatter.dateFormat = "yyyy-MM-dd"
                     let date = dateFormatter.date(from: element)
