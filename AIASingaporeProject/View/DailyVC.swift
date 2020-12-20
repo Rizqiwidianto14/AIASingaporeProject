@@ -106,8 +106,8 @@ extension DailyVC{
         
         let firstSymbol = self.dailyListVM.firstSymbol
         let secondSymbol = self.dailyListVM.secondSymbol
-        let firstURL = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=\(firstSymbol)&apikey=JD109RV7JNDNU0Z0&outputsize=\(dailyListVM.outputSize)")!
-        let secondURL = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=\(secondSymbol)&apikey=JD109RV7JNDNU0Z0&outputsize=\(dailyListVM.outputSize)")!
+        let firstURL = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=\(firstSymbol)&apikey=JD109RV7JNDNU0Z0&outputsize=\(dailyListVM.outputSize)")!
+        let secondURL = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=\(secondSymbol)&apikey=JD109RV7JNDNU0Z0&outputsize=\(dailyListVM.outputSize)")!
        let firstResource = Resource<DailyViewModel>(url: firstURL) { data in
         
            let dailyVM = try? JSONDecoder().decode(DailyViewModel.self, from: data)
