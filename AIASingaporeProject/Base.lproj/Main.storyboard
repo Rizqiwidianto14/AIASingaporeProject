@@ -650,8 +650,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="KEf-9v-9Es">
-                                <rect key="frame" x="10" y="89" width="355" height="132"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KEf-9v-9Es">
+                                <rect key="frame" x="10" y="89" width="355" height="180"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="4CS-pz-Sbr">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="70.5"/>
@@ -682,7 +682,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qnZ-wl-lIm">
-                                        <rect key="frame" x="0.0" y="72.5" width="355" height="59.5"/>
+                                        <rect key="frame" x="0.0" y="78.5" width="355" height="59.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Output Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LU7-00-XC0">
                                                 <rect key="frame" x="0.0" y="0.0" width="93.5" height="20.5"/>
@@ -706,10 +706,15 @@
                                             <constraint firstAttribute="trailing" secondItem="fCh-i2-NrR" secondAttribute="trailing" id="tAt-0K-FKt"/>
                                         </constraints>
                                     </stackView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbm-WC-EFp">
+                                        <rect key="frame" x="0.0" y="146" width="355" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="355" id="6bS-cr-VUi"/>
-                                    <constraint firstAttribute="height" constant="132" id="Nb1-0t-SMU"/>
+                                    <constraint firstAttribute="height" constant="180" id="gsF-a7-nie"/>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dph-UM-WGb">
@@ -754,6 +759,7 @@
                         <outlet property="indicator" destination="gRN-q1-5v7" id="Hqb-yy-WJU"/>
                         <outlet property="intradayInterval" destination="4Ae-68-1Bn" id="sRP-VX-AzM"/>
                         <outlet property="outputSegmented" destination="fCh-i2-NrR" id="jJq-vo-gGp"/>
+                        <outlet property="secretTextField" destination="xbm-WC-EFp" id="Uzj-j4-8fc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QH0-ok-yhM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9FA6EE39258F8DC60044B794 /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA6EE38258F8DC60044B794 /* NotificationCenter.swift */; };
-		9FA6EE4C258FAC6C0044B794 /* PreferenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA6EE4B258FAC6C0044B794 /* PreferenceViewModel.swift */; };
+		9FA6EE54258FD7DF0044B794 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA6EE53258FD7DF0044B794 /* UserDefault.swift */; };
 		9FB5DE1D258A106300C5B7B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE1C258A106300C5B7B5 /* AppDelegate.swift */; };
 		9FB5DE1F258A106300C5B7B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE1E258A106300C5B7B5 /* SceneDelegate.swift */; };
 		9FB5DE21258A106300C5B7B5 /* IntradayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5DE20258A106300C5B7B5 /* IntradayVC.swift */; };
@@ -47,7 +47,7 @@
 
 /* Begin PBXFileReference section */
 		9FA6EE38258F8DC60044B794 /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
-		9FA6EE4B258FAC6C0044B794 /* PreferenceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceViewModel.swift; sourceTree = "<group>"; };
+		9FA6EE53258FD7DF0044B794 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		9FB5DE19258A106300C5B7B5 /* AIASingaporeProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIASingaporeProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB5DE1C258A106300C5B7B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FB5DE1E258A106300C5B7B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -179,7 +179,6 @@
 			children = (
 				9FB5DE93258B558F00C5B7B5 /* IntradayListViewModel.swift */,
 				9FB5DEB4258C919500C5B7B5 /* DailyListViewModel.swift */,
-				9FA6EE4B258FAC6C0044B794 /* PreferenceViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -189,6 +188,7 @@
 			children = (
 				9FB5DEC7258E1CE100C5B7B5 /* BindingTextField.swift */,
 				9FA6EE38258F8DC60044B794 /* NotificationCenter.swift */,
+				9FA6EE53258FD7DF0044B794 /* UserDefault.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -328,10 +328,10 @@
 				9FB5DE27258A106300C5B7B5 /* AIASingaporeProject.xcdatamodeld in Sources */,
 				9FB5DE21258A106300C5B7B5 /* IntradayVC.swift in Sources */,
 				9FB5DE94258B558F00C5B7B5 /* IntradayListViewModel.swift in Sources */,
-				9FA6EE4C258FAC6C0044B794 /* PreferenceViewModel.swift in Sources */,
 				9FB5DE1D258A106300C5B7B5 /* AppDelegate.swift in Sources */,
 				9FB5DE7A258B289300C5B7B5 /* PreferencesCV.swift in Sources */,
 				9FA6EE39258F8DC60044B794 /* NotificationCenter.swift in Sources */,
+				9FA6EE54258FD7DF0044B794 /* UserDefault.swift in Sources */,
 				9FB5DE1F258A106300C5B7B5 /* SceneDelegate.swift in Sources */,
 				9FB5DEB5258C919500C5B7B5 /* DailyListViewModel.swift in Sources */,
 				9FB5DEC8258E1CE100C5B7B5 /* BindingTextField.swift in Sources */,

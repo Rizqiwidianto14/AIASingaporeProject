@@ -16,47 +16,65 @@ protocol IntervalDelegate{
     func intervalChanged(time: String)
 }
 class PreferencesCV: UIViewController {
-    var preferenceVM = PreferenceViewModel()
     var outputDelegate: OutputSizeDelegate?
     var intervalDelegate: IntervalDelegate?
+    let userDefaults = UserDefaults()
+    @IBOutlet weak var secretTextField: UITextField!
+    
+    var outputSize = "compact"
+    var interval = "5min"
+    
     @IBOutlet weak var outputSegmented: UISegmentedControl!
     @IBOutlet weak var intradayInterval: UISlider!
     @IBOutlet weak var indicator: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let intervalDefault = userDefaults.value(forKey: "interval") as? String{
+            indicator.text = "\(intervalDefault)"
+            interval = intervalDefault
+        }
+        
+       
         intradayInterval.addTarget(self, action: #selector(intradaySliderDidChange), for: .valueChanged)
+
+
 
     }
     @objc func intradaySliderDidChange(slider: UISlider){
         let currentValue = Int(slider.value)
         if currentValue == 1{
-            preferenceVM.interval = "1min"
+            interval = "1min"
         } else if currentValue == 2{
-            preferenceVM.interval = "5min"
+            interval = "5min"
         } else if currentValue == 3{
-            preferenceVM.interval = "15min"
+            interval = "15min"
         } else if currentValue == 4{
-            preferenceVM.interval = "30min"
+            interval = "30min"
         } else if currentValue == 5{
-            preferenceVM.interval = "60min"
+            interval = "60min"
         }
-        indicator.text = "\(preferenceVM.interval)"
+        indicator.text = "\(interval)"
+ 
+        
     }
     
     @IBAction func outputDidSelected(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            preferenceVM.outputSize = "compact"
-            print(preferenceVM.outputSize)
+            outputSize = "compact"
         } else {
-            preferenceVM.outputSize = "full"
-
+            outputSize = "full"
         }
+        userDefaults.setValue(sender.selectedSegmentIndex, forKey: "outputSize")
+
+
     }
     
  
     @IBAction func applyButtonPushed(_ sender: UIButton) {
-        outputDelegate?.outputChanged(output: preferenceVM.outputSize)
-        intervalDelegate?.intervalChanged(time: preferenceVM.outputSize)
+        outputDelegate?.outputChanged(output: outputSize)
+        intervalDelegate?.intervalChanged(time: outputSize)
+        userDefaults.setValue(interval, forKey: "interval")
+
         dismiss(animated: true, completion: nil)
     }
     
