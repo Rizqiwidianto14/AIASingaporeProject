@@ -327,7 +327,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gRf-9i-DXU">
-                                <rect key="frame" x="0.0" y="80" width="375" height="538"/>
+                                <rect key="frame" x="0.0" y="195" width="375" height="423"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="intradayCell" rowHeight="100" id="WAb-rp-k3e" customClass="IntradayCell" customModule="AIASingaporeProject" customModuleProvider="target">
@@ -454,53 +454,136 @@
                                 <rect key="frame" x="10" y="20" width="355" height="30"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Symbol" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8xB-WP-fOz" customClass="BindingTextField" customModule="AIASingaporeProject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="287" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAv-oD-Axd">
-                                        <rect key="frame" x="309" y="0.0" width="46" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="oIj-uD-a6v"/>
-                                            <constraint firstAttribute="height" constant="30" id="ugu-nD-GAX"/>
-                                        </constraints>
-                                        <state key="normal" title="Button" image="magnifyingglass" catalog="system"/>
-                                        <connections>
-                                            <action selector="searchButtonPressed" destination="dFD-Iw-Dh4" eventType="touchUpInside" id="e76-H8-49l"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="8xB-WP-fOz" secondAttribute="bottom" id="6uo-Kh-aMY"/>
                                     <constraint firstItem="8xB-WP-fOz" firstAttribute="top" secondItem="RBw-qy-Yc1" secondAttribute="top" id="EQN-xW-Ftl"/>
                                     <constraint firstAttribute="height" constant="30" id="I4D-Cg-lU8"/>
-                                    <constraint firstItem="rAv-oD-Axd" firstAttribute="leading" secondItem="8xB-WP-fOz" secondAttribute="trailing" constant="22" id="h6X-II-6mc"/>
                                     <constraint firstItem="8xB-WP-fOz" firstAttribute="leading" secondItem="RBw-qy-Yc1" secondAttribute="leading" id="tzQ-zo-lOO"/>
                                 </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="g1s-DQ-wP0">
+                                <rect key="frame" x="10" y="60" width="355" height="125"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rg-X9-MaW">
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="29"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAv-oD-Axd">
+                                                <rect key="frame" x="0.0" y="0.0" width="355" height="29"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title="Search By Date"/>
+                                                <connections>
+                                                    <action selector="searchByDatePressed" destination="dFD-Iw-Dh4" eventType="touchUpInside" id="e76-H8-49l"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <constraints>
+                                            <constraint firstItem="rAv-oD-Axd" firstAttribute="leading" secondItem="8rg-X9-MaW" secondAttribute="leading" id="8RO-uF-gMX"/>
+                                            <constraint firstItem="rAv-oD-Axd" firstAttribute="top" secondItem="8rg-X9-MaW" secondAttribute="top" id="RRC-VD-II2"/>
+                                            <constraint firstAttribute="trailing" secondItem="rAv-oD-Axd" secondAttribute="trailing" id="a4Q-cH-hPD"/>
+                                            <constraint firstAttribute="height" constant="29" id="fsP-YM-9wO"/>
+                                            <constraint firstAttribute="bottom" secondItem="rAv-oD-Axd" secondAttribute="bottom" id="lY2-vX-jqh"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tf4-oX-4bU">
+                                        <rect key="frame" x="0.0" y="32" width="355" height="29"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qg-wb-J8C">
+                                                <rect key="frame" x="0.0" y="0.0" width="355" height="29"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title="Search By Open"/>
+                                                <connections>
+                                                    <action selector="searchByOpenPressed" destination="dFD-Iw-Dh4" eventType="touchUpInside" id="NSL-p1-JaJ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="4qg-wb-J8C" secondAttribute="bottom" id="9Dc-n0-qFD"/>
+                                            <constraint firstItem="4qg-wb-J8C" firstAttribute="top" secondItem="tf4-oX-4bU" secondAttribute="top" id="EZO-2v-6C9"/>
+                                            <constraint firstItem="4qg-wb-J8C" firstAttribute="leading" secondItem="tf4-oX-4bU" secondAttribute="leading" id="Nm1-BV-JGp"/>
+                                            <constraint firstAttribute="height" constant="29" id="TuQ-S6-OQb"/>
+                                            <constraint firstAttribute="trailing" secondItem="4qg-wb-J8C" secondAttribute="trailing" id="X4v-QC-qev"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKX-Kc-F6b">
+                                        <rect key="frame" x="0.0" y="64" width="355" height="29"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTT-Ce-Jon">
+                                                <rect key="frame" x="0.0" y="0.0" width="355" height="29"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title="Search By High"/>
+                                                <connections>
+                                                    <action selector="searchByHighPressed" destination="dFD-Iw-Dh4" eventType="touchUpInside" id="0At-x6-Ecf"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="0Y4-oC-4jO"/>
+                                            <constraint firstItem="iTT-Ce-Jon" firstAttribute="leading" secondItem="OKX-Kc-F6b" secondAttribute="leading" id="5HM-ZJ-NIC"/>
+                                            <constraint firstAttribute="trailing" secondItem="iTT-Ce-Jon" secondAttribute="trailing" id="DIM-1G-kqj"/>
+                                            <constraint firstAttribute="bottom" secondItem="iTT-Ce-Jon" secondAttribute="bottom" id="DpC-1A-E0U"/>
+                                            <constraint firstItem="iTT-Ce-Jon" firstAttribute="top" secondItem="OKX-Kc-F6b" secondAttribute="top" id="Y09-6r-1dc"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsA-78-IGl">
+                                        <rect key="frame" x="0.0" y="96" width="355" height="29"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ej-0N-25c">
+                                                <rect key="frame" x="0.0" y="0.0" width="355" height="29"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title="Search By Low"/>
+                                                <connections>
+                                                    <action selector="searchByLowPressed" destination="dFD-Iw-Dh4" eventType="touchUpInside" id="dnf-no-ULn"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <constraints>
+                                            <constraint firstItem="8ej-0N-25c" firstAttribute="top" secondItem="fsA-78-IGl" secondAttribute="top" id="GAH-WJ-BxP"/>
+                                            <constraint firstAttribute="bottom" secondItem="8ej-0N-25c" secondAttribute="bottom" id="HTt-kn-AlM"/>
+                                            <constraint firstAttribute="trailing" secondItem="8ej-0N-25c" secondAttribute="trailing" id="hxb-gT-L0P"/>
+                                            <constraint firstAttribute="height" constant="29" id="pU1-Vn-D0Z"/>
+                                            <constraint firstItem="8ej-0N-25c" firstAttribute="leading" secondItem="fsA-78-IGl" secondAttribute="leading" id="tXN-ec-1dD"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cBZ-0v-87b"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gRf-9i-DXU" firstAttribute="top" secondItem="RBw-qy-Yc1" secondAttribute="bottom" constant="30" id="1d8-hn-z8E"/>
                             <constraint firstItem="RBw-qy-Yc1" firstAttribute="top" secondItem="cBZ-0v-87b" secondAttribute="top" constant="20" id="1x0-Nc-dwT"/>
+                            <constraint firstItem="g1s-DQ-wP0" firstAttribute="top" secondItem="RBw-qy-Yc1" secondAttribute="bottom" constant="10" id="7RD-wA-Tk5"/>
                             <constraint firstItem="cBZ-0v-87b" firstAttribute="trailing" secondItem="RBw-qy-Yc1" secondAttribute="trailing" constant="10" id="LGo-gA-fv2"/>
+                            <constraint firstItem="cBZ-0v-87b" firstAttribute="trailing" secondItem="g1s-DQ-wP0" secondAttribute="trailing" constant="10" id="Mi5-xZ-lJR"/>
                             <constraint firstItem="gRf-9i-DXU" firstAttribute="leading" secondItem="cBZ-0v-87b" secondAttribute="leading" id="PdZ-LM-ve2"/>
                             <constraint firstItem="gRf-9i-DXU" firstAttribute="trailing" secondItem="cBZ-0v-87b" secondAttribute="trailing" id="XcX-Y0-qrb"/>
+                            <constraint firstItem="gRf-9i-DXU" firstAttribute="top" secondItem="g1s-DQ-wP0" secondAttribute="bottom" constant="10" id="hzh-P7-RxP"/>
+                            <constraint firstItem="g1s-DQ-wP0" firstAttribute="leading" secondItem="cBZ-0v-87b" secondAttribute="leading" constant="10" id="mrO-oi-mgD"/>
                             <constraint firstItem="RBw-qy-Yc1" firstAttribute="leading" secondItem="cBZ-0v-87b" secondAttribute="leading" constant="10" id="ohq-gC-pRz"/>
                             <constraint firstItem="cBZ-0v-87b" firstAttribute="bottom" secondItem="gRf-9i-DXU" secondAttribute="bottom" id="ybz-gY-uWO"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Intraday" image="clock" catalog="system" id="Eyh-Bl-l9P"/>
                     <connections>
-                        <outlet property="searchButton" destination="rAv-oD-Axd" id="qJ7-hF-dOM"/>
+                        <outlet property="searchByDate" destination="rAv-oD-Axd" id="qJ7-hF-dOM"/>
+                        <outlet property="searchByHigh" destination="iTT-Ce-Jon" id="qEn-mL-aZA"/>
+                        <outlet property="searchByLow" destination="8ej-0N-25c" id="aqa-bs-z6j"/>
+                        <outlet property="searchByOpen" destination="4qg-wb-J8C" id="H95-zD-h14"/>
                         <outlet property="searchSymbol" destination="8xB-WP-fOz" id="wOZ-MM-2dL"/>
                         <outlet property="tableView" destination="gRf-9i-DXU" id="USb-S3-Pky"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ew-Uv-V1f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-342.02898550724638" y="805.58035714285711"/>
+            <point key="canvasLocation" x="-343.19999999999999" y="805.54722638680664"/>
         </scene>
         <!--Preferences-->
         <scene sceneID="CNh-Jd-o5E">
@@ -543,7 +626,6 @@
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>
         <image name="clock" catalog="system" width="128" height="121"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

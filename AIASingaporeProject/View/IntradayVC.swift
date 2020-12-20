@@ -10,6 +10,7 @@ import UIKit
 class IntradayVC: UIViewController {
     
     var arrayOfKeys = [String]()
+    var sorter = "Date"
     
     
     var intradayListVM = IntradayListViewModel()
@@ -19,14 +20,35 @@ class IntradayVC: UIViewController {
             searchSymbol.bind{ self.intradayListVM.symbol = $0 }
         }
     }
-    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var searchByDate: UIButton!
+    @IBOutlet weak var searchByOpen: UIButton!
+    @IBOutlet weak var searchByHigh: UIButton!
+    @IBOutlet weak var searchByLow: UIButton!
+    
     
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func searchButtonPressed(){
-        print(self.intradayListVM.symbol)
+    @IBAction func searchByDatePressed(){
+        sorter = "Date"
         setUp()
     }
+    
+    @IBAction func searchByOpenPressed(){
+        sorter = "Open"
+        setUp()
+        
+    }
+    @IBAction func searchByHighPressed(){
+        sorter = "High"
+        setUp()
+        
+    }
+    @IBAction func searchByLowPressed(){
+        sorter = "Low"
+        setUp()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
@@ -71,6 +93,7 @@ extension IntradayVC{
         
         Webservice().load(resource: intradayResource) { [weak self] result in
             
+            
             if let intradayVM = result {
                 let dict = intradayVM.timeSeriesIntraday
                 let myKeys: [String] = dict.map{String($0.key)}
@@ -78,33 +101,92 @@ extension IntradayVC{
                 self?.intradayListVM.open.removeAll()
                 self?.intradayListVM.high.removeAll()
                 self?.intradayListVM.low.removeAll()
+                self?.arrayOfKeys.removeAll()
                 
-                var arrayOfDate = [String]()
-                for element in myKeys{
-                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                    let date = dateFormatter.date(from: element)
-                    let newDate = dateFormatter.string(from: date!)
-                    arrayOfDate.append(newDate)
+                
+                func sorterValue(inputDict:[String : Int]){
+                    print("sorterValue")
+                    let sortedDictionary = inputDict.sorted{(first, second) -> Bool in
+                        return first.value > second.value
+                    }
+                    let sortedKeys = sortedDictionary.map{String($0.key)}
+                    for element in sortedKeys{
+                        self?.intradayListVM.open.append(intradayVM.timeSeriesIntraday[element]?.the1Open.value ?? "nil")
+                        self?.intradayListVM.high.append(intradayVM.timeSeriesIntraday[element]?.the2High.value ?? "nil")
+                        self?.intradayListVM.low.append(intradayVM.timeSeriesIntraday[element]?.the3Low.value ?? "nil")
+                        
+                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                        let date = dateFormatter.date(from: element)
+                        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+                        let newDate = dateFormatter.string(from: date!)
+                        self?.arrayOfKeys.append(newDate)
+                    }
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                    
                 }
                 
                 
-                let sortedArray = arrayOfDate.sorted{dateFormatter.date(from: $0) ?? Date() > dateFormatter.date(from: $1) ?? Date()}
-                for element in sortedArray{
-                    self?.intradayListVM.open.append(intradayVM.timeSeriesIntraday[element]?.the1Open.value ?? "nil")
-                    self?.intradayListVM.high.append(intradayVM.timeSeriesIntraday[element]?.the2High.value ?? "nil")
-                    self?.intradayListVM.low.append(intradayVM.timeSeriesIntraday[element]?.the3Low.value ?? "nil")
+                if self?.sorter == "Date"{
+                    var arrayOfDate = [String]()
+                    for element in myKeys{
+                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                        let date = dateFormatter.date(from: element)
+                        let newDate = dateFormatter.string(from: date!)
+                        arrayOfDate.append(newDate)
+                    }
                     
-                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                    let date = dateFormatter.date(from: element)
-                    dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-                    let newDate = dateFormatter.string(from: date!)
-                    self?.arrayOfKeys.append(newDate)
+                    
+                    let sortedArray = arrayOfDate.sorted{dateFormatter.date(from: $0) ?? Date() > dateFormatter.date(from: $1) ?? Date()}
+                    for element in sortedArray{
+                        self?.intradayListVM.open.append(intradayVM.timeSeriesIntraday[element]?.the1Open.value ?? "nil")
+                        self?.intradayListVM.high.append(intradayVM.timeSeriesIntraday[element]?.the2High.value ?? "nil")
+                        self?.intradayListVM.low.append(intradayVM.timeSeriesIntraday[element]?.the3Low.value ?? "nil")
+                        
+                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                        let date = dateFormatter.date(from: element)
+                        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+                        let newDate = dateFormatter.string(from: date!)
+                        self?.arrayOfKeys.append(newDate)
+                    }
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                } else if self?.sorter == "Open"{
+                    
+                    var newDict = [String : Int]()
+                    for element in myKeys{
+                        let temp = intradayVM.timeSeriesIntraday[element]?.the1Open.value ?? "nil"
+                        let stringOfStocks = temp.replacingOccurrences(of: ".", with: "")
+                        let toInt = Int(stringOfStocks)
+                        newDict[element] = toInt
+                    }
+                    sorterValue(inputDict: newDict)
+                    
+                    
+                } else if self?.sorter == "High"{
+                    
+                    var newDict = [String : Int]()
+                    for element in myKeys{
+                        let temp = intradayVM.timeSeriesIntraday[element]?.the2High.value ?? "nil"
+                        let stringOfStocks = temp.replacingOccurrences(of: ".", with: "")
+                        let toInt = Int(stringOfStocks)
+                        newDict[element] = toInt
+                    }
+                    sorterValue(inputDict: newDict)
+                } else if self?.sorter == "Low"{
+                    
+                    var newDict = [String : Int]()
+                    for element in myKeys{
+                        let temp = intradayVM.timeSeriesIntraday[element]?.the3Low.value ?? "nil"
+                        let stringOfStocks = temp.replacingOccurrences(of: ".", with: "")
+                        let toInt = Int(stringOfStocks)
+                        newDict[element] = toInt
+                    }
+                    sorterValue(inputDict: newDict)
                 }
 
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-                
             }
             
         }
