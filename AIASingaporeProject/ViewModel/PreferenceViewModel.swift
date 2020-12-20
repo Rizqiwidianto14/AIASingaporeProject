@@ -9,4 +9,5 @@ import Foundation
 
 class PreferenceViewModel{
     var outputSize = "compact"
+    var interval = "1min"
 }

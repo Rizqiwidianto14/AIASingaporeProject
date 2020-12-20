@@ -87,7 +87,11 @@ extension IntradayVC: UITableViewDelegate, UITableViewDataSource{
     
 }
 
-extension IntradayVC: OutputSizeDelegate {
+extension IntradayVC: OutputSizeDelegate, IntervalDelegate {
+    func intervalChanged(time: String) {
+        intradayListVM.interval = time
+    }
+    
     func outputChanged(output: String) {
         intradayListVM.outputSize = output
     }
@@ -99,7 +103,9 @@ extension IntradayVC: OutputSizeDelegate {
 extension IntradayVC{
     func setUp() {
         let symbol = self.intradayListVM.symbol
-        let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(symbol)&interval=5min&apikey=JD109RV7JNDNU0Z0&outputsize=\(intradayListVM.outputSize)")!
+        let interval = self.intradayListVM.interval
+        let outputSize = self.intradayListVM.outputSize
+        let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(symbol)&interval=\(interval)&apikey=JD109RV7JNDNU0Z0&outputsize=\(outputSize)")!
         
         let intradayResource = Resource<IntradayViewModel>(url: url) { data in
             

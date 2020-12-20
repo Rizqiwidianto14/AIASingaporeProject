@@ -16,6 +16,8 @@ class IntradayListViewModel{
     
     var symbol = "IBM"
     var outputSize = "compact"
+    var interval = "5min"
+
 }
 
 
