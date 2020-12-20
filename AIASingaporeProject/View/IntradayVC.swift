@@ -52,19 +52,34 @@ class IntradayVC: UIViewController {
         let selectedVC = storyboard?.instantiateViewController(identifier: "PreferencesCV") as! PreferencesCV
         selectedVC.outputDelegate = self
         present(selectedVC, animated: true, completion: nil)
+
     }
     
     
     
+  
+    
+ 
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(IntradayVC.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        self.hideKeyboardWhenTappedAround()
+
+        
     }
-    
-    
+
     
     
 }
+
 
 extension IntradayVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

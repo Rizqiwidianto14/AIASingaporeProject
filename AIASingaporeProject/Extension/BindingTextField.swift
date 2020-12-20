@@ -28,9 +28,12 @@ class BindingTextField: UITextField{
              self.textChangeClosure(text)
         }
     }
+    
+    
     func bind(callback: @escaping (String) -> ()) {
         self.textChangeClosure = callback
     }
+
     
 }
 

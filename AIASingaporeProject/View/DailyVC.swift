@@ -41,10 +41,19 @@ class DailyVC: UIViewController {
         present(selectedVC, animated: true, completion: nil)
     }
     
+       @objc func dismissKeyboard() {
+           view.endEditing(true)
+       }
+       func hideKeyboardWhenTappedAround() {
+           let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(IntradayVC.dismissKeyboard))
+           tap.cancelsTouchesInView = false
+           view.addGestureRecognizer(tap)
+       }
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        
+        self.hideKeyboardWhenTappedAround()
+
 
     }
     
@@ -54,7 +63,14 @@ class DailyVC: UIViewController {
 
 extension DailyVC: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayOfKeysTwo.count
+        if arrayOfKeysOne.count == 0 || arrayOfKeysTwo.count == 0{
+            setUp()
+            
+        }
+            return arrayOfKeysTwo.count
+        
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,11 +80,14 @@ extension DailyVC: UITableViewDelegate,UITableViewDataSource{
         cell.symbolLabelOne.text = dailyListVM.firstSymbol
         cell.symbolLabelTwo.text = dailyListVM.secondSymbol
         
-        cell.dateLabel.text = arrayOfKeysTwo[indexPath.row]
-        cell.openValueOne.text = dailyListVM.openOne[indexPath.row]
-        cell.openValueTwo.text = dailyListVM.openTwo[indexPath.row]
-        cell.lowValueOne.text = dailyListVM.lowOne[indexPath.row]
-        cell.lowValueTwo.text = dailyListVM.lowTwo[indexPath.row]
+       
+            cell.dateLabel.text = arrayOfKeysOne[indexPath.row]
+            cell.openValueOne.text = dailyListVM.openOne[indexPath.row]
+            cell.openValueTwo.text = dailyListVM.openTwo[indexPath.row]
+            cell.lowValueOne.text = dailyListVM.lowOne[indexPath.row]
+            cell.lowValueTwo.text = dailyListVM.lowTwo[indexPath.row]
+
+
         return cell
         
     }
